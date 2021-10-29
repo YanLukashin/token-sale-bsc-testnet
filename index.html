@@ -1,0 +1,150 @@
+            
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Token sale page">
+
+    <title>Token sale</title>
+   
+    <script>
+        var test = true; // False if contracts are on Mainnet
+        var contractAddressSale = '0xa13562B7a03c63Ae6453B33ba70A20FBe455Af39';
+        var contractAddressToken = '0x2fb81b5aee7Ac4d4a736f7DBb89139E17E37800B';
+    </script>
+    
+    <style>
+        
+        body {font-family: Circe, Circe, Circe, sans-serif; color: #FFFFFF; background-color: #19181d; font-size: 20px; font-weight: 400;}
+
+        h1 { font-size: 24px; font-weight: 700;} 
+        h2 { font-size: 22px; font-weight: 500;}
+
+        .small {
+            font-size: 12px;
+        }
+
+        .err {
+             color: #fa0707;
+        }
+
+        * {
+          box-sizing: border-box;
+        }
+        
+        a {
+          color: #FFFFFF;
+          text-decoration: none;
+        }
+        
+        a:hover {
+          color: #C0C0C0;
+        }
+        
+        .clickable {
+            cursor: pointer;
+        }
+        
+        .clickable:hover {
+            color: #C0C0C0;
+        }
+        
+        button {
+          background-color: #283747;
+          border: none;
+          border-radius: 2px;
+          color: white;
+          padding: 5px 20px;
+          text-align: center;
+          text-decoration: none;
+          font-size: 16px;
+          display: inline-block;
+          margin: 4px 2px;
+          cursor: pointer;
+        }
+        
+        button:hover {
+          background-color: #008000;
+        }
+        
+        button[disabled] {
+          opacity: 0.6;
+          cursor: not-allowed;
+        }
+        
+        hr {
+            margin: 20px;
+            border: 0;
+            border-top: 1px dashed;
+        }
+        
+        input {
+          text-align: center;
+          font-size: 18px;
+          background-color: #000000;
+          color: #FFFFFF;
+          border:1px solid;
+        }
+    </style>
+    
+</head>
+
+<body>
+    
+    <div style="text-align: center">
+        <button id="connect" style="font-size: 12px">Connect</button>
+        <span id="nometamask" class="err" style="display: none">Please install Metamask first...</span>
+        <div class="network small"><span id="curnet"><span class="err">Please use DApp browser/extension (e.g. <a target="_blank" href="https://metamask.io">Metamask</a>)</span></span> <span id="myAddr"></span></div>
+    </div>
+    
+    <div style="text-align: center">
+        <h2>Token info</h2>
+        <p><span id="tokenName">TEST</span> (<span id="tokenSymbol">TST</span>)</p>
+        <p><a target="_blank" href="" id="tokenAddress">0x2fb81b5aee7Ac4d4a736f7DBb89139E17E37800B</a></p>
+        <!-- Reserved in case you want to show decimals and total supply: <span id="#tokenDecimalsUI"></span> <span id="#tokenSupplyUI"></span>-->
+        <p><button id="addToken" style="text-align: center">Add to wallet</button></p>
+    </div>
+    
+    <hr>
+    
+    <div style="text-align: center">
+        <h2>Token sale info</h2>
+        <p>Total sale quantity: <span id="quantity">1000000</span></p>
+        <p>Token price: <span id="price">0.1</span> <span class='eth'>BNB</span> (<span id="ratio"></span> tokens per 1 BNB)</p>
+        <p><progress id="progress" value="0" max="100" style="width: 70%"></progress></p>
+        <p>Tokens sold: <span id="sold">0</span></p>
+        <p>Total raised: <span id="raised">0.0</span> <span class='eth'>BNB</span></p>
+        <p>Unsold tokens: <span id="unsold">1000000</span></p>
+        
+        <p>Token sale status: <span id="status">--</span></p>
+    </div>
+    
+    <hr>
+    
+    <div style="text-align: center">
+        <h2>Buy tokens</h2>
+        
+        <p><input type="number" id="buyQty" value="1"></p>
+        <h2><span id="buyAmount"></span> BNB</h2>
+        <p><button id="buyBtn" style="text-align: center">Buy</button></p>
+        <p>My tokens balance: <span id="myTokens"></span></p>
+    </div>
+    
+    <hr>
+    
+    <div style="text-align: center">
+        <h2>Sale contract</h2>
+        <p>You can also buy tokens by sending BNB to this contract (increase gas limit so that transaction does not fail):</p>
+        <p><a href="" target="_blank" id="saleAddress">0xa13562B7a03c63Ae6453B33ba70A20FBe455Af39</a></p>
+            <div style="text-align: center" id="refqr"></div>
+            <p style="text-align: center"><a style="text-decoration: none" id="refd" href="" download> Download QR </a></p>
+    </div>
+    
+<script src='https://dappbuilder.org/js/jquery-3.6.0.min.js' type="text/javascript" charset="utf-8"></script>
+<script src='https://dappbuilder.org/js/ethers-5.0.umd.min.js' type="text/javascript" charset="utf-8"></script>
+<script src='https://dappbuilder.org/bsc/tokensale/js/tokensale.ui.js' type="text/javascript" charset="utf-8"></script>
+
+</body>
+</html>           
